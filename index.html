@@ -123,7 +123,7 @@
   .tick-item b { color: var(--gold-bright); font-weight: 400; }
 
   /* ============ SECTIONS ============ */
-  section { padding: 88px 0; position: relative; z-index: 1; }
+  section { padding: 88px 0; position: relative; z-index: 1; scroll-margin-top: 76px; }
   .section-kicker {
     font-family: "Special Elite", monospace; color: var(--gold); letter-spacing: .3em;
     text-transform: uppercase; font-size: .75rem; margin-bottom: 12px;
@@ -237,6 +237,26 @@
   .foot-cols { display: grid; gap: 8px; color: var(--ink-dim); font-size: .85rem; text-align: right; }
   @media (max-width: 600px) { .foot-cols { text-align: left; } }
   .foot-fine { margin-top: 32px; padding-top: 20px; border-top: 1px dashed var(--line); color: var(--ink-dim); font-size: .78rem; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 760px) {
+    .nav-inner { flex-wrap: wrap; justify-content: center; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+    .logo { font-size: 1.05rem; }
+    .logo span { font-size: .7rem; letter-spacing: .14em; }
+    .nav-links { gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { font-size: .82rem; }
+  }
+
+  @media (max-width: 700px) {
+    section { padding: 56px 0; scroll-margin-top: 104px; }
+    header.hero { padding: 56px 0 44px; }
+    .hero-cta { gap: 12px; }
+    .btn { width: 100%; max-width: 340px; text-align: center; }
+    .booth { padding: 30px 20px; }
+    .portrait-card { padding: 20px; }
+    .case-card, .quote-card { padding: 22px 18px; }
+    .method { padding: 20px; }
+  }
 </style>
 </head>
 <body>
