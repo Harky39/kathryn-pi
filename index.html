@@ -238,6 +238,59 @@
   @media (max-width: 600px) { .foot-cols { text-align: left; } }
   .foot-fine { margin-top: 32px; padding-top: 20px; border-top: 1px dashed var(--line); color: var(--ink-dim); font-size: .78rem; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
+  /* ============ GAMES ============ */
+  .games-tabs { display: flex; gap: 10px; margin-top: 36px; flex-wrap: wrap; }
+  .game-tab {
+    background: var(--panel); border: 1px solid var(--line); color: var(--ink-dim);
+    padding: 12px 18px; border-radius: 4px; cursor: pointer; font-size: .9rem; letter-spacing: .03em;
+    transition: all .15s; font-family: inherit;
+  }
+  .game-tab:hover { color: var(--ink); border-color: var(--gold); }
+  .game-tab.active { background: var(--gold); color: #1a1408; border-color: var(--gold); font-weight: 700; }
+  .game-panel { display: none; margin-top: 24px; }
+  .game-panel.active { display: block; animation: slideIn .3s ease both; }
+  .game-frame { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+  @media (max-width: 600px) { .game-frame { padding: 18px; } }
+  .game-status { font-family: "Special Elite", monospace; color: var(--gold-bright); font-size: .85rem; letter-spacing: .08em; margin-bottom: 18px; min-height: 1.4em; text-align: center; }
+
+  /* Gossip Match (memory) */
+  .mm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 420px; margin: 0 auto; }
+  @media (max-width: 480px) { .mm-grid { gap: 7px; } }
+  .mm-card { aspect-ratio: 1; perspective: 600px; background: none; border: none; cursor: pointer; padding: 0; display: block; width: 100%; }
+  .mm-inner { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .45s; }
+  .mm-card.flipped .mm-inner, .mm-card.matched .mm-inner { transform: rotateY(180deg); }
+  .mm-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: clamp(1.4rem, 6vw, 2.2rem); }
+  .mm-back { background: var(--panel-2); border: 1px solid var(--line); color: var(--gold); font-family: "Special Elite", monospace; font-size: .9rem; }
+  .mm-front { background: #2a2318; border: 1px solid var(--gold); transform: rotateY(180deg); }
+  .mm-card.matched .mm-front { border-color: var(--green); opacity: .75; }
+
+  /* Curtain Peek */
+  .cp-target { text-align: center; margin-bottom: 14px; font-size: 1rem; color: var(--ink-dim); }
+  .cp-target b { color: var(--gold-bright); font-family: "Special Elite", monospace; letter-spacing: .08em; font-weight: 400; }
+  .cp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 560px; margin: 0 auto; }
+  @media (max-width: 480px) { .cp-grid { grid-template-columns: repeat(3, 1fr); gap: 9px; } }
+  .cp-window { aspect-ratio: 1/1.15; position: relative; background: #0d0b08; border: 6px solid #3a2f20; border-radius: 4px; overflow: hidden; cursor: pointer; padding: 0; }
+  .cp-item { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(1.6rem, 7vw, 2.6rem); opacity: .95; }
+  .cp-curtain { position: absolute; top: 0; bottom: 0; width: 51%; z-index: 2; transition: transform .7s ease;
+    background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 6px, transparent 6px 14px), linear-gradient(90deg, #7a4430, #5d3222); }
+  .cp-curtain.left { left: 0; border-right: 2px solid rgba(0,0,0,.35); }
+  .cp-curtain.right { right: 0; border-left: 2px solid rgba(0,0,0,.35);
+    background-image: repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 6px, transparent 6px 14px), linear-gradient(270deg, #7a4430, #5d3222); }
+  .cp-window.open .cp-curtain.left { transform: translateX(-92%); }
+  .cp-window.open .cp-curtain.right { transform: translateX(92%); }
+  .cp-rod { position: absolute; top: 0; left: -4px; right: -4px; height: 8px; background: #2a2115; z-index: 3; border-radius: 2px; }
+
+  /* Bin Archaeology quiz */
+  .qz-scene { display: flex; justify-content: center; gap: 10px; font-size: 2rem; margin-bottom: 16px; min-height: 2.4rem; }
+  .qz-q { text-align: center; color: var(--ink); margin-bottom: 20px; font-size: 1.05rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .qz-opts { display: grid; gap: 10px; max-width: 560px; margin: 0 auto; }
+  .qz-opt { text-align: left; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink); padding: 13px 16px; border-radius: 4px; cursor: pointer; font-size: .95rem; font-family: inherit; transition: border-color .15s, background .15s; }
+  .qz-opt:hover:not(:disabled) { border-color: var(--gold); }
+  .qz-opt:disabled { cursor: default; opacity: .85; }
+  .qz-opt.correct { border-color: var(--green); background: rgba(127,174,107,.12); opacity: 1; }
+  .qz-opt.wrong { border-color: var(--red); background: rgba(192,73,47,.12); opacity: 1; }
+  .qz-explain { margin-top: 16px; text-align: center; color: var(--ink-dim); font-size: .9rem; min-height: 1.4em; font-style: italic; }
+
   /* ============ MOBILE ============ */
   @media (max-width: 760px) {
     .nav-inner { flex-wrap: wrap; justify-content: center; row-gap: 8px; padding-top: 10px; padding-bottom: 10px; }
@@ -269,6 +322,7 @@
       <li><a href="#cases">Case Files</a></li>
       <li><a href="#methods">Methods</a></li>
       <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#games">Games</a></li>
       <li><a href="#confession">Confess</a></li>
     </ul>
   </div>
@@ -293,6 +347,7 @@
     <span class="tick-item"><b>CONFIRMED:</b> The garden gnome at #17 was not stolen. It was moved. Kathryn knew within 20 minutes.</span>
     <span class="tick-item"><b>RUMOUR:</b> Someone up by Bury Road orders three pizzas every Friday night. We are watching.</span>
     <span class="tick-item"><b>LOCAL:</b> Kathryn spotted at the top of Stoneclough again. She says she was "just getting some air." It's forty minutes from her front door.</span>
+    <span class="tick-item"><b>STAFF:</b> Julie spotted taking notes outside #12. She says it was "for a book." It is always for a book.</span>
     <span class="tick-item"><b>WEATHER:</b> Bin day tomorrow. Kathryn will be at her post by 6:45am.</span>
   </div>
 </div>
@@ -304,14 +359,14 @@
     <div class="about-grid">
       <div>
         <p class="section-lede" style="margin-bottom: 18px;">Kathryn has lived in Prestolee for thirty-eight years, with a front-row view of Stoneclough and the M62. In that time she has attended forty-one funerals, twenty-seven weddings (she knows which ones were "arranged"), and one very awkward barbecue where she overheard absolutely everything.</p>
-        <p class="section-lede" style="margin-bottom: 18px;">She is not a private investigator in any official sense. She has no licence, no office, and no case files — they're all in her head, filed alphabetically by how embarrassing they are. But ask anyone in Stoneclough or Prestolee who really runs this patch, and you'll get one answer.</p>
+        <p class="section-lede" style="margin-bottom: 18px;">She is not a private investigator in any official sense. She has no licence, no office, and no case files — they're all in her head, filed alphabetically by how embarrassing they are. She works alone — officially. Unofficially there is Julie: surveillance partner, note-taker, and the reason Kathryn has never once been caught at a fence. But ask anyone in Stoneclough or Prestolee who really runs this patch, and you'll get one answer.</p>
         <p class="section-lede">Her methods are unorthodox. Her accuracy is 98%. The other 2% she has never once admitted to.</p>
       </div>
       <div class="stats">
         <div class="stat"><span class="num">12,847</span><span class="lbl">pieces of gossip collected &amp; verified (mostly)</span></div>
         <div class="stat"><span class="num">All of them</span><span class="lbl">curtains in the street peered through. She knows which are "the thin ones."</span></div>
         <div class="stat"><span class="num">2</span><span class="lbl">times she's been wrong. She will not name them.</span></div>
-        <div class="stat"><span class="num">7:00am</span><span class="lbl">daily patrol begins — Bury Road to the park and back. Biscuit the dog is her partner in crime.</span></div>
+        <div class="stat"><span class="num">7:00am</span><span class="lbl">daily patrol begins — Bury Road to the park and back. Julie on point, Biscuit on backup.</span></div>
       </div>
     </div>
   </div>
@@ -333,7 +388,7 @@
         <span class="stamp ongoing">ONGOING</span>
         <p class="case-no">CASE #112</p>
         <h3>Who Parks in Our Spot?</h3>
-        <p>Three suspects. One alibi that doesn't hold up. Kathryn has a spreadsheet, a timeline, and strong feelings about the number plate. This case will not be closed until someone apologises.</p>
+        <p>Three suspects. One alibi that doesn't hold up. Kathryn and Julie have a spreadsheet, a timeline, and strong feelings about the number plate. This case will not be closed until someone apologises.</p>
       </article>
       <article class="case-card">
         <span class="stamp solved">SOLVED*</span>
@@ -362,6 +417,7 @@
       <div class="method"><span class="n">03</span><div><h3>The Garden Gate Trick</h3><p>She is always just passing by. Always. The gate has never once been closed for a reason, and she has never once been "just passing by" in the same direction twice.</p></div></div>
       <div class="method"><span class="n">04</span><div><h3>Dog-Walking Reconnaissance</h3><p>Biscuit walks the perimeter at 7am sharp. Kathryn calls it "a walk." It is, in fact, a patrol with a tail.</p></div></div>
       <div class="method"><span class="n">05</span><div><h3>The Fence Eavesdrop</h3><p>Her ears are her best asset. She has never once been caught listening to a conversation she wasn't part of. (She has.)</p></div></div>
+      <div class="method"><span class="n">06</span><div><h3>The Two-Woman Stroll</h3><p>Kathryn and Julie "just happen" to be walking the same direction at the same time. Every day. For years. The neighbours have stopped asking.</p></div></div>
     </div>
   </div>
 </section>
@@ -384,6 +440,50 @@
         <p>Kathryn once told me off at a party about something that happened in 2019 and I still don't know what it was. We are now on speaking terms.</p>
         <cite>— RESIDENT OF #31</cite><span class="anon">(the incident is, of course, Case #64)</span>
       </blockquote>
+      <blockquote class="quote-card">
+        <p>I'm officially just here for the biscuits. Unofficially I keep the spreadsheet — and yes, it has tabs now.</p>
+        <cite>— JULIE</cite><span class="anon">(surveillance partner; she knows all of your business too)</span>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section id="games">
+  <div class="wrap">
+    <p class="section-kicker">For When She's Not Watching</p>
+    <h2>The Rec Room</h2>
+    <p class="section-lede">Kathryn and Julie have approved these games. They will absolutely judge your scores.</p>
+    <div class="games-tabs" role="tablist">
+      <button class="game-tab active" data-game="match" type="button">🃏 Gossip Match</button>
+      <button class="game-tab" data-game="peek" type="button">🪟 Curtain Peek</button>
+      <button class="game-tab" data-game="bin" type="button">🗑️ Bin Archaeology</button>
+    </div>
+
+    <div class="game-panel active" id="panel-match">
+      <div class="game-frame">
+        <p class="game-status" id="mmStatus"></p>
+        <div class="mm-grid" id="mmGrid"></div>
+        <div style="text-align:center; margin-top:20px;"><button class="btn btn-ghost" id="mmRestart" type="button">Shuffle Again</button></div>
+      </div>
+    </div>
+
+    <div class="game-panel" id="panel-peek">
+      <div class="game-frame">
+        <p class="cp-target" id="cpTarget"></p>
+        <p class="game-status" id="cpStatus"></p>
+        <div class="cp-grid" id="cpGrid"></div>
+        <div style="text-align:center; margin-top:20px;"><button class="btn btn-ghost" id="cpNext" type="button">New Round</button></div>
+      </div>
+    </div>
+
+    <div class="game-panel" id="panel-bin">
+      <div class="game-frame">
+        <p class="game-status" id="qzStatus"></p>
+        <div class="qz-scene" id="qzScene"></div>
+        <p class="qz-q" id="qzQuestion"></p>
+        <div class="qz-opts" id="qzOpts"></div>
+        <p class="qz-explain" id="qzExplain"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -469,6 +569,182 @@
       input.value = '';
       caseNo++;
     });
+  })();
+
+  // Rec Room: tab switching
+  (function () {
+    document.querySelectorAll('.game-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.game-tab').forEach(function (t) { t.classList.remove('active'); });
+        document.querySelectorAll('.game-panel').forEach(function (p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.game).classList.add('active');
+      });
+    });
+  })();
+
+  // Rec Room: Gossip Match (memory pairs)
+  (function () {
+    var items = [
+      { e: '🗑️', n: 'bin bag' }, { e: '🍕', n: 'pizza box' }, { e: '🐶', n: 'Biscuit' },
+      { e: '💇', n: 'new haircut' }, { e: '📰', n: 'gossip column' }, { e: '🔭', n: 'curtain scope' },
+      { e: '🚗', n: 'suspicious car' }, { e: '☕', n: 'the good tea' }
+    ];
+    var grid = document.getElementById('mmGrid');
+    var status = document.getElementById('mmStatus');
+    var first = null, lock = false, moves = 0, matched = 0, timer = null, seconds = 0;
+
+    function startTimer() { clearInterval(timer); seconds = 0; timer = setInterval(function () { seconds++; update(); }, 1000); }
+    function update() { status.textContent = 'Moves: ' + moves + ' · Time: ' + seconds + 's · Pairs: ' + matched + '/8'; }
+
+    function build() {
+      grid.innerHTML = ''; first = null; lock = false; moves = 0; matched = 0; seconds = 0;
+      clearInterval(timer); timer = null;
+      status.textContent = 'Match the pairs. Kathryn is timing you.';
+      var deck = items.concat(items).sort(function () { return Math.random() - .5; });
+      deck.forEach(function (it) {
+        var b = document.createElement('button');
+        b.className = 'mm-card'; b.type = 'button'; b.setAttribute('aria-label', 'card: ' + it.n);
+        b.innerHTML = '<span class="mm-inner"><span class="mm-face mm-back">?</span><span class="mm-face mm-front">' + it.e + '</span></span>';
+        b.dataset.item = it.n;
+        b.addEventListener('click', function () { flip(b); });
+        grid.appendChild(b);
+      });
+    }
+
+    function flip(card) {
+      if (lock || card === first || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+      card.classList.add('flipped');
+      if (!timer) startTimer();
+      if (!first) { first = card; return; }
+      moves++;
+      if (first.dataset.item === card.dataset.item) {
+        first.classList.add('matched'); card.classList.add('matched');
+        matched++; first = null;
+        if (matched === 8) { clearInterval(timer); status.textContent = 'Case closed in ' + moves + ' moves. Kathryn has filed your score under "impressive".'; }
+      } else {
+        lock = true;
+        var a = first, b = card; first = null;
+        setTimeout(function () { a.classList.remove('flipped'); b.classList.remove('flipped'); lock = false; }, 800);
+      }
+      update();
+    }
+
+    document.getElementById('mmRestart').addEventListener('click', build);
+    build();
+  })();
+
+  // Rec Room: Curtain Peek (find the target behind the curtains)
+  (function () {
+    var targets = [
+      { e: '🍕', n: 'the suspicious pizza box' },
+      { e: '🧳', n: 'a suitcase that was not there yesterday' },
+      { e: '💇', n: 'Dave from #42, mid-haircut' },
+      { e: '📦', n: 'boxes. Moving boxes. Big ones.' },
+      { e: '🎂', n: 'a cake tin (party? Kathryn was not invited)' },
+      { e: '🔭', n: 'Julie, taking notes' }
+    ];
+    var decoys = ['📺', '🐈', '🪴', '🧺', '🛋️', '☕', '🗞️', '🎸', '🧦', '🍽️'];
+    var grid = document.getElementById('cpGrid');
+    var targetEl = document.getElementById('cpTarget');
+    var status = document.getElementById('cpStatus');
+    var peeks = 0, found = false, best = null;
+
+    function round() {
+      peeks = 0; found = false; grid.innerHTML = '';
+      var t = targets[Math.floor(Math.random() * targets.length)];
+      targetEl.innerHTML = 'Find: <b>' + t.e + ' ' + t.n + '</b>';
+      status.textContent = best !== null ? ('Best so far: ' + best + ' peeks') : 'Fewer peeks, better score. She is watching.';
+      var pool = decoys.concat(decoys).sort(function () { return Math.random() - .5; }).slice(0, 11);
+      var idx = Math.floor(Math.random() * 12);
+      for (var i = 0; i < 12; i++) {
+        (function (i) {
+          var b = document.createElement('button');
+          b.className = 'cp-window'; b.type = 'button';
+          b.setAttribute('aria-label', 'window ' + (i + 1));
+          b.innerHTML = '<span class="cp-item">' + (i === idx ? t.e : pool[i]) + '</span><span class="cp-curtain left"></span><span class="cp-curtain right"></span><span class="cp-rod"></span>';
+          b.addEventListener('click', function () {
+            if (b.classList.contains('open') || found) return;
+            b.classList.add('open'); peeks++;
+            if (i === idx) {
+              found = true;
+              status.textContent = 'Case closed in ' + peeks + ' peeks. ' + (peeks <= 3 ? 'Flawless. Julie is taking notes on YOU now.' : peeks <= 6 ? 'Solid work. Kathryn nods approvingly from the fence.' : 'She saw every single one of those peeks.');
+              if (best === null || peeks < best) best = peeks;
+            } else {
+              status.textContent = (12 - peeks) + ' windows left. ' + ['Not it.', 'Also not it.', 'Kathryn is smirking.'][Math.floor(Math.random() * 3)];
+            }
+          });
+          grid.appendChild(b);
+        })(i);
+      }
+    }
+
+    document.getElementById('cpNext').addEventListener('click', round);
+    round();
+  })();
+
+  // Rec Room: Bin Archaeology (quiz)
+  (function () {
+    var qs = [
+      { scene: ['🍕', '🍕', '🍕', '🥫'], q: 'Three pizza boxes and a tin of beans. What does Kathryn conclude?',
+        opts: ['They are having a party.', 'The Friday Pizza Case is progressing.', 'They have given up on cooking.', 'All of the above — she always picks all of the above.'], a: 3,
+        why: 'Kathryn has never once picked just one thing. The pizza case is now in its third week.' },
+      { scene: ['🧴', '💄', '📦'], q: 'New shampoo, lipstick, and a small parcel with no return address.',
+        opts: ['They are redecorating the bathroom.', 'A date is happening this weekend.', 'Someone has started a skincare routine.', 'The bin is full. That is all.'], a: 1,
+        why: 'Kathryn cross-referenced the parcel size with three separate conversations over the fence.' },
+      { scene: ['🗞️', '🥫', '🔋'], q: 'A newspaper, tins, and batteries. Utterly normal.',
+        opts: ['Nothing to report.', 'Suspiciously normal — file it anyway.', 'They are hiding something in the batteries.', 'The newspaper is from a rival street.'], a: 1,
+        why: '"Normal" is Kathryn\'s favourite word. It goes straight into the archive under "watch this one".' },
+      { scene: ['🎂', '🎈', '🧁'], q: 'A cake tin and balloons on a Tuesday.',
+        opts: ['Birthday party — and Kathryn was not invited, which she will mention.', 'It is a surprise for Biscuit.', 'The family are celebrating bin day.', 'Nothing. Balloons are just balloons.'], a: 0,
+        why: 'She will mention it at least four times, in different tenses.' },
+      { scene: ['📦', '📦', '🛋️'], q: 'Two large boxes and a sofa cushion.',
+        opts: ['They are moving house — Kathryn already knows who is buying.', 'They have found something in the loft.', 'The sofa has opinions now.', 'Storage. Just storage.'], a: 0,
+        why: 'She knew before the removal van arrived. She was "just passing by".' },
+      { scene: ['💊', '🍬', '☕'], q: 'Pills, sweets, and an alarming amount of tea.',
+        opts: ['Someone is very well.', 'The sugar habit has been discovered.', 'Grandma is visiting — or someone is pretending to be Grandma.', 'Tea. Just tea.'], a: 2,
+        why: 'Julie confirmed the timing from the letterbox. It was "for a book".' }
+    ];
+    var i = 0, score = 0;
+    var sceneEl = document.getElementById('qzScene'), qEl = document.getElementById('qzQuestion'),
+        optsEl = document.getElementById('qzOpts'), exEl = document.getElementById('qzExplain'), stEl = document.getElementById('qzStatus');
+
+    function show() {
+      var q = qs[i];
+      stEl.textContent = 'Question ' + (i + 1) + ' of ' + qs.length + ' · Score: ' + score;
+      sceneEl.innerHTML = q.scene.map(function (e) { return '<span>' + e + '</span>'; }).join('');
+      qEl.textContent = q.q; exEl.textContent = ''; optsEl.innerHTML = '';
+      q.opts.forEach(function (o, oi) {
+        var b = document.createElement('button'); b.className = 'qz-opt'; b.type = 'button'; b.textContent = o;
+        b.addEventListener('click', function () { answer(oi, b); });
+        optsEl.appendChild(b);
+      });
+    }
+
+    function answer(oi, btn) {
+      var q = qs[i];
+      Array.prototype.forEach.call(optsEl.children, function (c) { c.disabled = true; });
+      if (oi === q.a) { btn.classList.add('correct'); score++; exEl.textContent = 'Correct. ' + q.why; }
+      else { btn.classList.add('wrong'); optsEl.children[q.a].classList.add('correct'); exEl.textContent = 'Kathryn would not agree. ' + q.why; }
+      var next = document.createElement('button');
+      next.className = 'btn btn-primary'; next.type = 'button'; next.style.marginTop = '16px';
+      next.textContent = i < qs.length - 1 ? 'Next Question' : 'See Your Verdict';
+      next.addEventListener('click', function () { i++; if (i < qs.length) show(); else verdict(); });
+      optsEl.appendChild(next);
+    }
+
+    function verdict() {
+      var r = score <= 2 ? 'Rookie Nosy Neighbour — Kathryn is watching you more closely now.' : score <= 4 ? 'Part-Time Gossip Agent — you know things, but not the right things.' : 'Full-Time Gossip Agent — Julie has asked about you. Twice.';
+      stEl.textContent = ''; sceneEl.innerHTML = '<span>🕵️</span>';
+      qEl.textContent = 'You scored ' + score + ' of ' + qs.length + '. Verdict: ' + r;
+      exEl.textContent = 'Kathryn and Julie have both seen your score. They are discussing it over tea.';
+      optsEl.innerHTML = '';
+      var again = document.createElement('button'); again.className = 'btn btn-ghost'; again.type = 'button'; again.textContent = 'Sit the Exam Again';
+      again.addEventListener('click', function () { i = 0; score = 0; show(); });
+      optsEl.appendChild(again);
+    }
+
+    show();
   })();
 </script>
 
